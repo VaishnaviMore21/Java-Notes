@@ -1,0 +1,56 @@
+Here’s a clear and interview-friendly explanation of the difference between object and reference in Java:
+________________________________________
+1. Object
+Definition:
+•	An object is a real entity in memory that represents an instance of a class.
+•	It occupies memory and has state (fields/attributes) and behavior (methods).
+Key Points:
+1.	Created in heap memory using the new keyword.
+2.	Represents the actual data of the instance.
+3.	Can exist independently, but to access it, you usually need a reference.
+Example:
+class Student {
+    String name;
+    int age;
+}
+
+public class TestObject {
+    public static void main(String[] args) {
+        Student s = new Student(); // 's' is a reference, new Student() is the object
+        s.name = "Alice";
+        s.age = 20;
+    }
+}
+•	Here, new Student() creates the object in memory.
+________________________________________
+2. Reference
+Definition:
+•	A reference is a variable that points to an object in memory.
+•	It does not hold the actual object, just the address/location of the object in the heap.
+Key Points:
+1.	Stored in stack memory.
+2.	Can point to different objects over time.
+3.	Can be null if it does not point to any object.
+Example:
+Student s1 = new Student(); // s1 is a reference pointing to a Student object
+Student s2 = s1;            // s2 now points to the same object as s1
+s1 = null;                   // original object still exists, but s1 no longer points to it
+________________________________________
+3. Key Differences Between Object and Reference
+Feature	Object	Reference
+Definition	Actual instance in memory	Variable that points to an object
+Memory Location	Heap	Stack (stores address)
+Represents	Real entity with state and behavior	Access path to the object
+Creation	Using new keyword	Declared as a variable of class type
+Can be null?	No (object exists in memory)	Yes (reference can point to null)
+Usage	Performs operations / stores data	Accesses the object
+Example	new Student()	Student s = new Student();
+________________________________________
+Summary
+•	Object = Actual instance in memory.
+•	Reference = Variable that points to the object.
+•	Analogy: Think of a house (object) and its address (reference). You can have the address without the house being occupied, but the house is the actual entity.
+________________________________________
+If you want, I can also make a small diagram showing reference and object in memory, which is very helpful for interviews.
+Do you want me to do that?
+
