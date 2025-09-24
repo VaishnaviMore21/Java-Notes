@@ -1,0 +1,118 @@
+Here’s a detailed and well-structured note for Java Lecture-35: Access Specifiers in Java, including a table and explanation for clarity.
+________________________________________
+Java Lecture-35: Access Specifiers in Java
+Prepared By: Atul Kabra, 9422279260
+Course: Java Programming, Info Planet Programming Classes
+________________________________________
+Introduction
+In Java, access specifiers (also called access modifiers) are used to control the visibility or accessibility of classes, methods, and variables.
+They determine from where a class or member can be accessed.
+Java provides four types of access specifiers:
+1.	Private
+2.	Default (no modifier)
+3.	Protected
+4.	Public
+________________________________________
+1) Private Access Specifier
+•	Declared using the keyword private.
+•	Accessible only within the same class.
+•	Cannot be accessed from other classes or subclasses.
+Example:
+class A {
+    private int data = 10; // private variable
+
+    void display() {
+        System.out.println("Data: " + data); // accessible within class
+    }
+}
+
+class TestPrivate {
+    public static void main(String[] args) {
+        A a = new A();
+        // System.out.println(a.data); // Error: data has private access
+        a.display(); // works fine
+    }
+}
+________________________________________
+2) Default Access Specifier
+•	If no access modifier is specified, Java treats it as default.
+•	Accessible within the same class and package, but not outside the package.
+Example:
+class A {
+    int data = 20; // default variable
+
+    void display() {
+        System.out.println("Data: " + data);
+    }
+}
+
+class TestDefault {
+    public static void main(String[] args) {
+        A a = new A();
+        System.out.println(a.data); // accessible within same package
+    }
+}
+________________________________________
+3) Protected Access Specifier
+•	Declared using the keyword protected.
+•	Accessible within the same package.
+•	Accessible outside the package through inheritance only.
+Example:
+class A {
+    protected int data = 30;
+
+    protected void display() {
+        System.out.println("Data: " + data);
+    }
+}
+
+class B extends A { // subclass
+    void show() {
+        System.out.println("Protected Data: " + data); // accessible through inheritance
+    }
+}
+
+class TestProtected {
+    public static void main(String[] args) {
+        B b = new B();
+        b.show();
+    }
+}
+________________________________________
+4) Public Access Specifier
+•	Declared using the keyword public.
+•	Accessible from anywhere (within class, package, or outside package).
+•	Has the widest scope among all access specifiers.
+Example:
+class A {
+    public int data = 40;
+
+    public void display() {
+        System.out.println("Data: " + data);
+    }
+}
+
+class TestPublic {
+    public static void main(String[] args) {
+        A a = new A();
+        System.out.println(a.data); // accessible everywhere
+        a.display();                // accessible everywhere
+    }
+}
+________________________________________
+Comparison Table of Access Specifiers
+Access Specifier	Within Class	Within Package	Outside Package (through inheritance)	Outside Package
+private	Yes	No	No	No
+default	Yes	Yes	No	No
+protected	Yes	Yes	Yes	No
+public	Yes	Yes	Yes	Yes
+________________________________________
+✅ Key Points to Remember
+•	private → most restrictive.
+•	public → least restrictive (widest access).
+•	protected → allows inheritance access outside the package.
+•	default → package-private; no keyword needed.
+________________________________________
+If you want, I can also make a visual diagram showing all four access levels in a hierarchy diagram, which is super helpful for exams and quick revision.
+Do you want me to do that?
+
