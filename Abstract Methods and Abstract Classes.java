@@ -87,3 +87,23 @@ Area of Triangle = 40.0
 ```
 
 ---
+
+    Other simple real-life examples:
+
+Shape → Circle, Rectangle, Triangle (as in your lecture)
+
+Shape: abstract class
+
+area(): abstract method
+
+Employee → Manager, Developer, Tester
+
+Employee: abstract class
+
+calculateSalary(): abstract method
+
+Appliance → WashingMachine, Refrigerator, Microwave
+
+Appliance: abstract class
+
+operate(): abstract method
