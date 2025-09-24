@@ -1,0 +1,84 @@
+Here’s a detailed, interview-ready explanation of transient variables in Java:
+________________________________________
+1. Definition
+•	A transient variable is a variable in Java whose **value is not serialized when an object is converted into a byte stream.
+•	In other words, transient variables are skipped during serialization.
+•	Used with the transient keyword.
+________________________________________
+2. Why Transient Variables Are Used
+•	When a class implements Serializable, all its fields are serialized by default.
+•	Sometimes, you may have sensitive or temporary data that should not be saved or sent over a network.
+•	Example use cases:
+1.	Passwords or confidential data
+2.	Temporary/cache values that can be recomputed
+3.	References to resources like file streams or sockets
+________________________________________
+3. Syntax
+transient dataType variableName;
+________________________________________
+4. Example
+import java.io.*;
+
+class User implements Serializable {
+    private String username;
+    private transient String password; // transient variable
+
+    User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public String toString() {
+        return "Username: " + username + ", Password: " + password;
+    }
+}
+
+public class TransientDemo {
+    public static void main(String[] args) throws Exception {
+        User user = new User("Alice", "secret123");
+
+        // Serialize object
+        FileOutputStream fos = new FileOutputStream("user.ser");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(user);
+        oos.close();
+
+        // Deserialize object
+        FileInputStream fis = new FileInputStream("user.ser");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        User deserializedUser = (User) ois.readObject();
+        ois.close();
+
+        System.out.println("After deserialization: " + deserializedUser);
+    }
+}
+Output:
+After deserialization: Username: Alice, Password: null
+Explanation:
+•	password was declared transient, so its value was not saved during serialization.
+•	On deserialization, password is null.
+________________________________________
+5. Key Points
+1.	Used with Serializable classes.
+2.	Transient variables are skipped during serialization.
+3.	Default value after deserialization:
+o	int → 0
+o	float → 0.0
+o	boolean → false
+o	Object → null
+4.	Can be combined with static, but static variables are never serialized anyway.
+________________________________________
+6. Summary Table (Transient vs Non-Transient)
+Feature	Transient Variable	Non-Transient Variable
+Serialization	Skipped	Serialized
+Default Value After Deserialization	Default (0, null, false)	Original value
+Keyword	transient	Not required
+Use Case	Sensitive or temporary data	Normal object data
+________________________________________
+Interview Tip:
+•	Always mention serialization context when explaining transient variables.
+•	Real-life example: storing passwords, session tokens, temporary cache objects.
+________________________________________
+If you want, I can also give a diagram showing serialized object with transient and non-transient fields — it makes it very clear visually for interviews.
+Do you want me to do that?
+
