@@ -1,0 +1,70 @@
+Here’s a well-structured Java Lecture-34 notes for the final keyword along with examples:
+________________________________________
+Java Lecture-34: Final Keyword
+Prepared By: Atul Kabra, 9422279260
+Course: Java Programming, Info Planet Programming Classes
+________________________________________
+Uses of final keyword in Java
+1) To Create Constant Field
+•	If a field is declared as final, its value cannot be changed once initialized.
+•	It must be initialized at the time of declaration or in the constructor.
+Example:
+class MathConstants {
+    final static double PI = 3.14;  // constant field
+    public static void main(String[] args) {
+        System.out.println("Value of PI: " + PI);
+        // PI = 3.1415; // Error: cannot assign a value to final variable PI
+    }
+}
+________________________________________
+2) To Prevent Method Overriding
+•	Sometimes, we want to prevent a method from being overridden in subclasses.
+•	Use final keyword before the method declaration in the superclass.
+Example:
+class A {
+    final void display() {
+        System.out.println("This is a final method");
+    }
+}
+
+class B extends A {
+    // void display() {   // Error: cannot override final method
+    //     System.out.println("Illegal attempt");
+    // }
+}
+
+class TestFinalMethod {
+    public static void main(String[] args) {
+        B b = new B();
+        b.display(); // calls final method from A
+    }
+}
+________________________________________
+3) To Prevent Inheritance
+•	Declaring a class as final prevents it from being subclassed.
+•	All methods in a final class are implicitly final.
+Example:
+final class A {
+    void show() {
+        System.out.println("This is a final class");
+    }
+}
+
+// class B extends A {  // Error: cannot inherit from final class
+// }
+
+class TestFinalClass {
+    public static void main(String[] args) {
+        A a = new A();
+        a.show();
+    }
+}
+________________________________________
+✅ Summary Table
+Use of final	Description
+Final Field	Makes a variable constant; cannot change value.
+Final Method	Prevents method overriding in subclass.
+Final Class	Prevents inheritance; class cannot be subclassed.
+________________________________________
+If you want, I can also make a small diagram showing all three uses of final in one visual for easy revision. Do you want me to do that?
+
