@@ -1,0 +1,72 @@
+
+1. Definition
+•	The main thread is the initial thread that is automatically created by the JVM when a Java program starts.
+•	The execution of the program starts from the main() method, and this method is executed by the main thread.
+•	Any additional threads in the program are child threads, created explicitly by the programmer.
+________________________________________
+2. Key Points About Main Thread
+1.	Automatic creation: JVM creates the main thread at program startup.
+2.	Thread name: By default, the name of the main thread is "main".
+3.	Priority: Default priority of main thread is 5 (normal priority).
+4.	Lifecycle:
+o	Starts when main() is called.
+o	Runs the statements in main().
+o	Terminates when main() completes execution.
+5.	Thread class association: Main thread is an instance of the Thread class internally.
+________________________________________
+3. Main Thread Example
+public class MainThreadDemo {
+    public static void main(String[] args) {
+        // Print name of main thread
+        System.out.println("Current Thread: " + Thread.currentThread().getName());
+
+        // Print priority of main thread
+        System.out.println("Main Thread Priority: " + Thread.currentThread().getPriority());
+    }
+}
+Output:
+Current Thread: main
+Main Thread Priority: 5
+________________________________________
+4. Creating Child Threads From Main Thread
+•	The main thread can create additional threads using the Thread class or implementing Runnable.
+class ChildThread extends Thread {
+    public void run() {
+        System.out.println("Child Thread running: " + Thread.currentThread().getName());
+    }
+}
+
+public class TestThread {
+    public static void main(String[] args) {
+        System.out.println("Main Thread: " + Thread.currentThread().getName());
+
+        ChildThread t = new ChildThread();
+        t.start(); // main thread creates child thread
+    }
+}
+Output:
+Main Thread: main
+Child Thread running: Thread-0
+________________________________________
+5. Main Thread and Daemon Threads
+•	By default, the main thread is a user thread.
+•	JVM waits for all user threads (including main thread) to complete before terminating the program.
+•	If a daemon thread is running, JVM does not wait for it to finish; it terminates once all user threads (like main thread) finish.
+________________________________________
+6. Summary for Interviews
+Feature	Description
+Created by JVM	Yes, automatically when program starts
+Execution starts from	main() method
+Thread class	Instance of Thread internally
+Name	"main" by default
+Priority	5 (normal)
+Role	Entry point of the program; can create child threads
+Daemon vs User	Main thread is a user thread; JVM waits for it
+________________________________________
+💡 Interview Tip:
+•	Always mention that the main thread is the entry point of a Java program, is user thread, and can create child threads.
+•	You can also mention thread name and priority as extra points.
+________________________________________
+If you want, I can also draw a diagram showing main thread creating multiple child threads and how JVM handles daemon threads — it’s very helpful for interviews.
+Do you want me to do that?
+
